@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coder Agent</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="header-logo">
+        <span class="logo-bracket">{</span>
+        <span class="logo-text">ERROR CORRECTER AGENT</span>
+        <span class="logo-bracket">}</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-body">
+
+    <section class="panel panel-input">
+      <div class="panel-header">
+        <span class="panel-title">INPUT</span>
+        <span class="panel-hint">Paste your code below</span>
+      </div>
+
+      <div class="field-row">
+        <label for="lang-select">Language</label>
+        <select id="lang-select">
+          <option value="auto">Auto-detect</option>
+          <option value="Python">Python</option>
+          <option value="JavaScript">JavaScript</option>
+          <option value="TypeScript">TypeScript</option>
+          <option value="Java">Java</option>
+          <option value="C++">C++</option>
+          <option value="C">C</option>
+          <option value="Go">Go</option>
+          <option value="Rust">Rust</option>
+          <option value="SQL">SQL</option>
+        </select>
+      </div>
+
+      <textarea
+        id="code-input"
+        class="code-textarea"
+        placeholder="# Paste your code here..."
+        spellcheck="false"
+      ></textarea>
+
+      <div class="btn-row">
+        <button id="analyze-btn" class="btn-primary" onclick="analyzeCode()">
+          &#9654; Analyze Code
+        </button>
+        <button class="btn-secondary" onclick="clearAll()">Clear</button>
+      </div>
+
+      <div class="pipeline-strip" id="pipeline-strip" style="display:none;">
+        <div class="pipeline-step" id="step-detector">
+          <span class="step-dot" id="dot-detector"></span>
+          <span>Detector Agent</span>
+        </div>
+        <div class="pipeline-arrow">&#8594;</div>
+        <div class="pipeline-step" id="step-explainer">
+          <span class="step-dot" id="dot-explainer"></span>
+          <span>Explainer Agent</span>
+        </div>
+        <div class="pipeline-arrow">&#8594;</div>
+        <div class="pipeline-step" id="step-fixer">
+          <span class="step-dot" id="dot-fixer"></span>
+          <span>Fixer Agent</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right: Output Chat -->
+    <section class="panel panel-output">
+      <div class="panel-header">
+        <span class="panel-title">ANALYSIS OUTPUT</span>
+        <span class="panel-hint" id="output-hint">Results will appear here</span>
+      </div>
+
+      <div class="chat-feed" id="chat-feed">
+        <div class="welcome-msg">
+          <p>Submit your code on the left to begin analysis.</p>
+          <ol>
+            <li><strong>Detector</strong> — identifies all errors and bugs</li>
+            <li><strong>Explainer</strong> — explains why each error occurs</li>
+            <li><strong>Fixer</strong> — returns corrected code</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <script src="/static/script.js"></script>
+</body>
+</html>
